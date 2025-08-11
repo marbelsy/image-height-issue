@@ -1,21 +1,638 @@
 @import '@nativescript/theme/core';
 @import '@nativescript/theme/default';
 
-// Place any CSS rules you want to apply on both iOS and Android here.
-// This is where the vast majority of your CSS code goes.
+$content-elements-space: 30;
 
-// Font icon class
-.fab {
-  font-family: 'Font Awesome 5 Brands', 'fa-brands-400';
-  font-weight: 400;
+$DefaultFontRegular: var(--DefaultFontRegular, if(global-variable-exists(DefaultFontRegular), $DefaultFontRegular, 'Heebo'));
+$DefaultFontWeightRegular: var(--DefaultFontWeightRegular, if(global-variable-exists(DefaultFontWeightRegular), $DefaultFontWeightRegular, 400));
+
+$DefaultFontMedium: var(--DefaultFontMedium, if(global-variable-exists(DefaultFontMedium), $DefaultFontMedium, 'Heebo'));
+$DefaultFontWeightMedium: var(--DefaultFontWeightMedium, if(global-variable-exists(DefaultFontWeightMedium), $DefaultFontWeightMedium, 500));
+
+$DefaultIconFont: var(--DefaultIconFont, if(global-variable-exists(DefaultIconFont), $DefaultIconFont, 'hallogemeinde_icon-font'));
+
+$DefaultPageBackgroundColor: var(--DefaultPageBackgroundColor, if(global-variable-exists(DefaultPageBackgroundColor), $DefaultPageBackgroundColor, #f5f5f5));
+$MainColor: var(--MainColor, if(global-variable-exists(MainColor), $MainColor, #A91ea6));
+$BasicColor: var(--BasicColor, if(global-variable-exists(BasicColor), $BasicColor, #111111));
+$ButtonColor: var(--ButtonColor, if(global-variable-exists(ButtonColor), $ButtonColor, #701ea6));
+$DefaultBorderRadius: var(--DefaultBorderRadius, if(global-variable-exists(DefaultBorderRadius), $DefaultBorderRadius, 4));
+$DefaultBottomDistance: 80;
+
+$Headline1Color: var(--Headline1Color, if(global-variable-exists(Headline1Color), $Headline1Color, #333333));
+$Headline2Color: var(--Headline2Color, if(global-variable-exists(Headline2Color), $Headline2Color, #1537));
+$Headline3Color: var(--Headline3Color, if(global-variable-exists(Headline3Color), $Headline3Color, #317));
+$Headline4Color: var(--Headline4Color, if(global-variable-exists(Headline4Color), $Headline4Color, #345));
+$PreSublineColor: var(--PreSublineColor, if(global-variable-exists(PreSublineColor), $PreSublineColor, #3917));
+$TextIndicationColor: var(--TextIndicationColor, if(global-variable-exists(TextIndicationColor), $TextIndicationColor, #917ea6));
+$InfoBoxColor: var(--InfoBoxColor, if(global-variable-exists(InfoBoxColor), $InfoBoxColor, #917ea6));
+
+
+Page {
+  action-bar-hidden: true;
+  enable-swipe-back-navigation: false;
+  background-color: $DefaultPageBackgroundColor;
+}
+ScrollView {
+  scroll-bar-indicator-visible: false;
+}
+CollectionView {
+  scroll-bar-indicator-visible: false;
+}
+HTMLLabel {
+  vertical-text-alignment: center;
+  font-family: $DefaultFontRegular;
+  color: #333333;
+  line-break: end;
+  text-overflow: ellipsis;
 }
 
-.fas {
-  font-family: 'Font Awesome 5 Free', 'fa-solid-900';
-  font-weight: 900;
+.ns-root {
+  ios-a11y-adjusts-font-size: false;
+  ios-a11y-min-font-scale: 0.9;
+  ios-a11y-max-font-scale: 2;
 }
 
-.far {
-  font-family: 'Font Awesome 5 Free', 'fa-regular-400';
-  font-weight: 400;
+Page {
+  action-bar-hidden: true;
+}
+
+.headline1 {
+  font-size: 19;
+  font-family: $DefaultFontMedium;
+  font-weight: $DefaultFontWeightMedium;
+  color: $Headline1Color;
+}
+.headline2 {
+  font-size: 17;
+  font-family: $DefaultFontMedium;
+  font-weight: $DefaultFontWeightMedium;
+  color: $Headline2Color;
+}
+.headline3 {
+  font-size: 15;
+  font-family: $DefaultFontMedium;
+  font-weight: $DefaultFontWeightMedium;
+  color: $Headline3Color;
+}
+.headline4 {
+  font-size: 15;
+  font-family: $DefaultFontMedium;
+  font-weight: $DefaultFontWeightMedium;
+  color: $Headline4Color;
+}
+.basic-text {
+  font-size: 15;
+  font-family: $DefaultFontRegular;
+  font-weight: $DefaultFontWeightRegular;
+  color: $BasicColor;
+}
+.pre-subline {
+  font-size: 15;
+  font-family: $DefaultFontRegular;
+  font-weight: $DefaultFontWeightRegular;
+  color: $PreSublineColor
+}
+.icon {
+  font-family: $DefaultIconFont;
+  font-size: 20;
+}
+
+
+.btn {
+  border-width: 2;
+  border-radius: $DefaultBorderRadius;
+  border-color: $ButtonColor;
+  color: $ButtonColor;
+  padding: 5 10;
+  columns: #{'*, auto'};
+  opacity: 1;
+}
+.btn .text,
+.btn .icon {
+  color: $ButtonColor;
+}
+.btn.text-thin .text {
+  font-family: $DefaultFontRegular;
+  font-weight: $DefaultFontWeightRegular;
+}
+.btn.icon-left {
+  columns: #{'auto, *'};
+}
+.btn.double-icon {
+  columns: #{'auto, *, auto'};
+}
+.btn.inversed {
+  background-color: $ButtonColor;
+  color: white;
+  opacity: 1;
+}
+.btn.inversed .text,
+.btn.inversed .icon, {
+  color: white;
+}
+.btn.plain {
+  background-color: transparent;
+  border-color: transparent;
+}
+.btn.plain-white {
+  background-color: white;
+}
+.btn.no-border {
+  border-width: 0;
+}
+.btn.filled-F4F4F4 {
+  background-color: #F4F4F4;
+}
+.btn.filled-F5F5F5 {
+  background-color: #F5F5F5;
+}
+.btn .text {
+  font-family: $DefaultFontMedium;
+  font-weight: $DefaultFontWeightMedium;
+  col: 0;
+}
+.btn .icon {
+  col: 1;
+}
+.btn.icon-left .text {
+  col: 1;
+}
+.btn.icon-left .icon {
+  col: 0;
+  margin-right: 10;
+}
+.btn.icon-only {
+  rows: #{'*'};
+  columns: #{'*'};
+}
+.btn.icon-only .icon:not(.append) {
+  row:0;
+  col:0;
+  vertical-text-alignment:center;
+  text-align: center;
+}
+.btn.text-only {
+  rows: #{'*'};
+  columns: #{'*'};
+}
+.btn.text-only .text {
+  row: 0;
+  col: 0;
+  text-align: center;
+}
+.btn.double-icon .icon:not(.append) {
+  col: 0;
+  margin-right: 10;
+}
+.btn.double-icon .text {
+  col: 1;
+}
+.btn.double-icon .icon.append {
+  col: 2;
+}
+.btn.height-40 {
+  height: 40;
+}
+.btn.height-50 {
+  height: 50;
+}
+.btn.height-60 {
+  height: 60;
+}
+
+.btn.circle {
+  padding: 0;
+}
+.btn.circle .text,
+.btn.circle .icon {
+  col: 0;
+  row: 0;
+  horizontal-alignment: center;
+  text-align: center;
+  vertical-alignment: center;
+  vertical-text-alignment: center;
+}
+
+.btn.min-height-40 {
+  /** bundles definition with the next one, min-height of childs is always min-height of button minus top+bottom padding **/
+  min-height: 40;
+}
+.btn.min-height-40 > * {
+  min-height: 30;
+}
+.btn.min-height-50 {
+  min-height: 50;
+}
+.btn.min-height-50 > * {
+  min-height: 40;
+}
+.btn.disabled {
+  opacity: .3;
+}
+.main-header {
+  row:0;
+}
+.main-header .main-header-bg {
+  ios-overflow-safe-area: true;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.main-header-content {
+  columns: #{'60, *, 60'};
+}
+.main-header-content > * {
+  ios-overflow-safe-area:false;
+}
+.main-header-content .left {
+  col:0;
+}
+.main-header-content .right {
+  col:2;
+}
+.main-header-content .page-title {
+  col:1;
+  horizontal-alignment: center;
+}
+.main-header-content .page-title > * {
+  text-align: center;
+  vertical-text-alignment: center;
+}
+.main-header-content.whited .btn .text,
+.main-header-content.whited .btn .icon,
+.main-header-content.whited .headline1 {
+  color: white;
+}
+
+.footer-content-wrapper {
+  row:2;
+  vertical-alignment: bottom;
+  height: 70;
+  background-color: white;
+  border-top-left-radius: $DefaultBorderRadius;
+  border-top-right-radius: $DefaultBorderRadius;
+  box-shadow: 0 0 8 2 rgba(0, 0, 0, 0.4);
+}
+.ns-android .footer-content-wrapper {
+  height: 90;
+}
+.footer-content-wrapper .btn {
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 0;
+  columns: #{'*'};
+  rows: #{'auto, auto'};
+  height: 100%;
+}
+.footer-content-wrapper .btn .text {
+  max-lines: 2;
+  text-wrap: true;
+  line-break: end;
+  margin-top: 5;
+  font-size: 14;
+  line-height: 18;
+  row: 1;
+}
+
+.footer-content-wrapper .btn .icon {
+  margin-top: 8;
+  row:0;
+  font-size: 22;
+}
+.footer-content-wrapper .btn .icon,
+.footer-content-wrapper .btn .text {
+  text-align: center;
+}
+.footer-content-wrapper .btn.active {
+  background-color: $MainColor;
+}
+.footer-content-wrapper .btn.first {
+  border-top-left-radius: $DefaultBorderRadius;
+}
+.footer-content-wrapper .btn.last {
+  border-top-right-radius: $DefaultBorderRadius;
+}
+
+
+
+
+.side-drawer-menu {
+  height: 100%;
+  row:0;
+  col:0;
+  background-color: white;
+  rows: #{'50,2,*,1'};
+  ios-overflow-safe-area: true;
+}
+.side-drawer-menu .action-header {
+  columns: #{'auto, *, auto'}
+}
+.side-drawer-menu .action-header .btn.close {
+  col: 0;
+  width: 60;
+}
+.side-drawer-menu .separator-el {
+  row: 1;
+}
+.side-menu-list {
+  ios-overflow-safe-area: true;
+  height: 100%;
+  row: 2;
+  padding-left: 20;
+  padding-right: 20;
+}
+.side-menu-list .btn {
+  margin-bottom: 10;
+}
+.side-menu-list .btn > * {
+  min-height: 40;
+}
+.side-menu-list .btn .icon {
+  font-size: 24;
+}
+.side-menu-list .btn .text {
+  font-size: 16;
+}
+.side-menu-list.data-app .data-list {
+  padding-top: 30;
+  padding-bottom: 70;
+}
+.side-drawer-menu .bottom-spacer {
+  background-color: $MainColor;
+  row: 3;
+}
+
+.content-el {
+  margin-top: $content-elements-space;
+  margin-bottom: $content-elements-space;
+}
+.content-el.halved {
+  margin-bottom: 0;
+}
+.content-el.quartered {
+  margin-top: $content-elements-space / 4;
+  margin-bottom: $content-elements-space / 4;
+}
+.content-el-top {
+  margin-top: $content-elements-space;
+}
+.content-el-bottom {
+  margin-bottom: $content-elements-space;
+}
+.content-el-padding {
+  padding-top: $content-elements-space;
+  padding-bottom: $content-elements-space;
+}
+.content-el-padding-top {
+  padding-top: $content-elements-space;
+}
+.content-el-padding-bottom {
+  padding-bottom: $content-elements-space;
+}
+
+.filter-bar {
+  height: auto;
+  padding-top: 20;
+  padding-bottom: 20;
+  width: 100%;
+  background-color: white;
+  rows: auto, 10, auto;
+  columns: #{'*'};
+  vertical-align: top;
+  border-bottom-width: 2;
+  border-bottom-color: #E8E8E8;
+}
+
+.filter-bar .top-slot {
+  col: 0;
+  row: 0;
+  min-height: 0;
+}
+.filter-bar .fulltext-search {
+  padding: 0 36 0 40;
+}
+.filter-bar .bottom-slot {
+  col: 0;
+  row: 2;
+  min-height: 0;
+}
+.filter-bar .filter-elements-scroller {
+  orientation: horizontal;
+  scroll-bar-indicator-visible: false;
+}
+.filter-bar .filter-elements-wrapper {
+  orientation: horizontal;
+  padding-left: 15;
+  padding-right: 20;
+}
+.filter-bar .filter-elements-wrapper > * {
+  margin-right: 10;
+}
+.data-app .data-list {
+  padding-bottom: 140;
+}
+.data-app .data-list .loader {
+  margin-top: $content-elements-space;
+  margin-bottom: 10;
+}
+.data-app .data-list.horizontal {
+  padding: 0 40 0 20;
+  col-width: auto;
+}
+/*
+// directly handled on layouts due to android limitations
+.data-app .data-list.horizontal > * {
+  margin-right: 10;
+}
+ */
+.filter-wrapper {
+  rows: #{'*, 70'}
+}
+.filter-wrapper .filter-main-content {
+  row: 0;
+}
+.filter-wrapper .filter-footer {
+  row: 1;
+}
+.filter-wrapper .filter-footer .filter-footer-content {
+  columns: #{'*, *'};
+  padding: 5 20;
+}
+.filter-wrapper .filter-footer .filter-footer-content .cancel {
+  col: 0;
+  horizontal-alignment: left;
+}
+.filter-wrapper .filter-footer .filter-footer-content .confirm {
+  col: 1;
+  horizontal-alignment: right;
+}
+.data-app.filter-select .data-list > * {
+  margin-bottom: 10;
+}
+.data-app.filter-select .data-list {
+  padding-left: 20;
+  padding-right: 20;
+  padding-top: 30;
+  padding-bottom: 80;
+}
+.scrollable-component.scrolling * .touchable {
+  is-user-interaction-enabled: false;
+}
+.scrollable-component.non-scrolling * .touchable {
+  is-user-interaction-enabled: true;
+}
+.dialog-card {
+  border-top-left-radius: $DefaultBorderRadius;
+  border-top-right-radius: $DefaultBorderRadius;
+}
+.dialog-card .main-content > * {
+  vertical-align: top;
+  ios-overflow-safe-area: true;
+}
+
+
+
+.news-teaser-el {
+  rows: auto, auto, auto, auto, auto, auto;
+}
+.news-teaser-el .date-line-el {
+  row: 0;
+}
+.news-teaser-el .headline1 {
+  row: 1;
+  max-lines: 2;
+  line-break: end;
+}
+.news-teaser-el .pre-subline {
+  row: 2;
+  max-lines: 2;
+  line-break: end;
+}
+.news-teaser-el .picture-el-wrapper {
+  row: 3;
+}
+.news-teaser-el .picture-el-wrapper .picture {
+  width: 100%;
+  aspect-ratio: 1.3;
+}
+.news-teaser-el .basic-text {
+  row: 4;
+  text-wrap: true;
+  line-break: end;
+  max-lines: 5;
+}
+.news-teaser-el .btn {
+  row: 5;
+  width: 50%;
+  horizontal-alignment: left;
+}
+
+.news-teaser-el.no-subtitle {
+  rows: auto, auto, 0, auto, auto, auto;
+}
+.news-teaser-el.no-subtitle .pre-subline {
+  visibility: hidden;
+  margin: 0;
+}
+
+/** news teaser 2**/
+.news-teaser-alt2-el {
+  columns: #{'*, 105'};
+  margin-bottom: 10;
+}
+.news-teaser-alt2-el .complete-text-content-wrapper {
+  rows: auto, auto;
+  columns: #{'auto, auto, *, 105'};
+  column-span: 2;
+}
+.news-teaser-alt2-el .date-el {
+  row: 0;
+  column: 0;
+  margin-left: 15;
+}
+.news-teaser-alt2-el .complete-text-content-wrapper > .icon {
+  row: 0;
+  column: 1;
+  margin-left: 10;
+  font-size: 16;
+}
+.news-teaser-alt2-el .content-wrapper {
+  row: 1;
+  column: 0;
+  column-span: 4;
+  min-height: 85;
+  background-color: #F5F5F5;
+  rows: auto, auto, auto;
+  padding: 10 15;
+}
+.news-teaser-alt2-el.image .content-wrapper {
+  columns: #{'*, 105'};
+}
+.news-teaser-alt2-el .content-wrapper .headline1 {
+  row: 0;
+  max-lines: 2;
+  line-break: end;
+}
+.news-teaser-alt2-el .content-wrapper .pre-subline {
+  row: 1;
+  max-lines: 1;
+  line-break: end;
+}
+.news-teaser-alt2-el .content-wrapper .category {
+  row: 3;
+  horizontal-align: left;
+  margin-top: 10;
+}
+.news-teaser-alt2-el .teaser-img {
+  row: 0;
+  col: 1;
+  stretch: aspectFill;
+  margin-top: 15;
+  border-radius: $DefaultBorderRadius $DefaultBorderRadius 0 0;
+  height: 100%;
+}
+.news-teaser-alt2-el.image .teaser-img-wrapper {
+  row: 0;
+  col: 1;
+  height: 100%;
+  background-color: red;
+}
+
+
+.news-teaser-alt2-el .picture-el-wrapper {
+  row: 0;
+  col: 1;
+  height: 100%;
+}
+.news-teaser-alt2-el .picture-el-wrapper .picture {
+  stretch: aspectFill;
+  height: 100%;
+  border-radius: $DefaultBorderRadius;
+  vertical-alignment: top;
+}
+.news-teaser-alt2-el.first {
+  rows: auto, auto;
+}
+.news-teaser-alt2-el.first .picture-el-wrapper {
+  col: 0;
+  row: 0;
+  row-span: 1;
+  col-span: 2;
+  margin-left: 20;
+  margin-right: 20;
+}
+.news-teaser-alt2-el.first .picture-el-wrapper .picture {
+  stretch: aspectFill;
+  aspect-ratio: 1.5;
+}
+.news-teaser-alt2-el.first .complete-text-content-wrapper {
+  row: 1;
+}
+
+.news-details .headline1 {
+  max-lines: 3;
+}
+.news-details .pre-subline {
+  max-lines: 3;
 }
