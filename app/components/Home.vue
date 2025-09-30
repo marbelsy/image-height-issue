@@ -4,9 +4,10 @@
       <Label text="Home" class="font-bold text-lg" />
     </ActionBar>
 
-    <GridLayout rows="auto, auto" backgroundColor="violet">
+    <GridLayout rows="auto, auto, auto" backgroundColor="violet">
       <NewsTeaser :item="item" :has-image="true" verticalAlignment="top"/>
       <NewsTeaserInline :item="item" row="1"/>
+      <NewsTeaserInline2 :item="item" row="2"/>
     </GridLayout>
   </Page>
 </template>
@@ -15,9 +16,10 @@
 import NewsTeaser from './NewsTeaser.vue';
 import Vue from 'nativescript-vue';
 import NewsTeaserInline from "~/components/NewsTeaserInline.vue";
+import NewsTeaserInline2 from "~/components/NewsTeaserInline2.vue";
 
 export default {
-  components: {NewsTeaserInline, NewsTeaser },
+  components: {NewsTeaserInline, NewsTeaserInline2, NewsTeaser },
   data() {
     return {
       item: {
