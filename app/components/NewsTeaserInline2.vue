@@ -15,7 +15,7 @@
                  textWrap="true"
                  row="0"/>
     </GridLayout>
-    <NSImg row="0" col="1"
+    <Image row="0" col="1"
            rowSpan="2"
            stretch="aspectFill" :src="item.imageSource"
            verticalAlignment="bottom"

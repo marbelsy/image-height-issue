@@ -1,51 +1,57 @@
 <template>
   <Page>
-    <ActionBar>
-      <Label text="Home" class="font-bold text-lg" />
-    </ActionBar>
 
-    <GridLayout rows="auto, auto, auto" backgroundColor="violet">
-      <NewsTeaser :item="item" :has-image="true" verticalAlignment="top"/>
-      <NewsTeaserInline :item="item" row="1"/>
-      <NewsTeaserInline2 :item="item" row="2"/>
+
+    <!-- #1 here the first htmllabel cuts off after 1 line, second using css is correctly using 2 lines and ends with ... -->
+
+    <GridLayout rows="auto, 10, auto">
+      <HTMLLabel row="0" maxLines="2" textWrap="true" lineBreak="end" text="some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here"/>
+      <HTMLLabel row="2" class="html-label" text="some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here"/>
     </GridLayout>
+
+
+
+    <!-- #2 here to first HTMLLabel has only one line, whereas the second has 2 lines but is cut off instead of ... at the end -->
+    <!--
+    <GridLayout rows="auto, 10, auto">
+      <HTMLLabel row="0" class="html-label" text="some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here"/>
+      <HTMLLabel row="2" maxLines="2" textWrap="true" lineBreak="end" text="some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here"/>
+    </GridLayout>
+    -->
+
+    <!-- #3 for whatever reason using an empty htmllabel first contrary to #1 at least displayes both labels as 2 lines, lineBreak end is still ignored on direct props --->
+    <!--
+    <GridLayout rows="auto, 10, auto, 10, auto">
+      <HTMLLabel row="0"/>
+      <HTMLLabel row="2" maxLines="2" textWrap="true" lineBreak="end" text="some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here"/>
+      <HTMLLabel row="4" class="html-label" text="some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here.some text that is here"/>
+    </GridLayout>
+    -->
+
   </Page>
 </template>
 
 <script>
-import NewsTeaser from './NewsTeaser.vue';
-import Vue from 'nativescript-vue';
-import NewsTeaserInline from "~/components/NewsTeaserInline.vue";
-import NewsTeaserInline2 from "~/components/NewsTeaserInline2.vue";
 
 export default {
-  components: {NewsTeaserInline, NewsTeaserInline2, NewsTeaser },
+  components: {},
   data() {
     return {
-      item: {
-        news_title: 'Sturzflut-Risikokonzept',
-        dateDisplayValue: '29.07.25',
-        imageSource:
-            'https://files1.sqronline.de/files/thumbnail/8108671469?thumbsize=520x',
-      },
+
     };
   },
   computed: {
-    message() {
-      return 'Blank {N}-Vue app';
-    },
+
   },
 
   methods: {
-    logMessage() {
-      console.log('You have tapped the message!');
-    },
+
   },
 };
 </script>
 
 <style>
-/* .info {
-    font-size: 20;
-  } */
+  .html-label {
+    max-lines: 2;
+  }
 </style>
